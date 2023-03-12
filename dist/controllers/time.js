@@ -13,7 +13,8 @@ const validate_1 = require("../utils/validate");
 function getTime(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const { error, value } = (0, validate_1.validateTime)(req.body);
+            console.log(req.body);
+            const { error } = (0, validate_1.validateTime)(req.body);
             console.log({ error });
             if (error) {
                 return res.status(400).send({

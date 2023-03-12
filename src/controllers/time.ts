@@ -3,6 +3,8 @@ import { validateTime } from "../utils/validate";
 
 async function getTime(req: Request, res: Response, next: NextFunction) {
   try {
+    console.log(req.body);
+
     const { error } = validateTime(req.body);
     console.log({ error });
 

@@ -11,7 +11,6 @@ const joiValidateOptions = {
 const epochDescriptionScheme = joi_1.default.string()
     .valid("The current server time, in epoch seconds, at time of processing the request.")
     .required();
-// const epochTypeSchema =
 const epochObjSchema = joi_1.default.object({
     description: epochDescriptionScheme,
     type: joi_1.default.string().valid("number").required(),
@@ -26,8 +25,9 @@ const timeSchema = joi_1.default.object({
         epoch: epochObjSchema,
     },
     required: requiredSchema,
-    type: joi_1.default.any(),
+    type: typeScheme,
 });
+// Reuseable Validate function when nmore validation needs to be added
 const validate = (schema) => (payload) => schema.validate(payload, joiValidateOptions);
 exports.validateTime = validate(timeSchema);
 //# sourceMappingURL=validate.js.map
