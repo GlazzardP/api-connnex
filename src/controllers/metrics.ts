@@ -14,14 +14,6 @@ async function getPrometheusMetrics(
       throw "Cannot Get Prometheus Metrics";
     });
 
-    const error = false;
-    if (error) {
-      return res.status(400).send({
-        success: false,
-        error: "No Auth Token",
-      });
-    }
-
     res.send({
       success: true,
       metrics,

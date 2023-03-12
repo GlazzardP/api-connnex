@@ -12,17 +12,10 @@ Object.defineProperty(exports, "__esModule", { value: true });
 function getTime(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            const error = false;
-            if (error) {
-                return res.status(400).send({
-                    success: false,
-                    error: "No Auth Token",
-                });
-            }
-            const epochSeconds = Date.now(); // Unix timestamp in milliseconds
+            const time = Date.now(); // Unix timestamp in milliseconds
             res.send({
                 success: true,
-                time: epochSeconds,
+                time,
             });
         }
         catch (error) {
