@@ -1,4 +1,5 @@
 import { Request, Response, NextFunction } from "express";
+import { prometheusMetrics } from "../utils/metrics";
 
 async function getPrometheusMetrics(
   req: Request,
@@ -8,6 +9,11 @@ async function getPrometheusMetrics(
   try {
     console.log("Metrics Run");
 
+    const metrics = await prometheusMetrics().catch((err) => {
+      console.log({ err });
+      throw "Cannot Get Prometheus Metrics";
+    });
+
     const error = false;
     if (error) {
       return res.status(400).send({
@@ -15,11 +21,10 @@ async function getPrometheusMetrics(
         error: "No Auth Token",
       });
     }
-    const metrics = {};
 
     res.send({
       success: true,
-      metrics: metrics,
+      metrics,
     });
   } catch (error) {
     console.log({ error });
