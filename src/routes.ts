@@ -1,5 +1,6 @@
 import { Express, Request, Response } from "express";
 import time from "./controllers/time";
+import metrics from "./controllers/metrics";
 
 function routes(app: Express) {
   console.log("Routes");
@@ -7,6 +8,7 @@ function routes(app: Express) {
     res.status(200).json({ message: "Hello World!" });
   });
   app.get("/time", time.getTime);
+  app.get("/metrics", metrics.getPrometheusMetrics);
 }
 
 export default routes;
