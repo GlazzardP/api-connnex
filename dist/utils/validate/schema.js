@@ -3,11 +3,8 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.validateTime = void 0;
+exports.timeSchema = void 0;
 const joi_1 = __importDefault(require("joi"));
-const joiValidateOptions = {
-    abortEarly: false,
-};
 const epochDescriptionScheme = joi_1.default.string()
     .valid("The current server time, in epoch seconds, at time of processing the request.")
     .required();
@@ -27,7 +24,5 @@ const timeSchema = joi_1.default.object({
     required: requiredSchema,
     type: typeScheme,
 });
-// Reuseable Validate function when nmore validation needs to be added
-const validate = (schema) => (payload) => schema.validate(payload, joiValidateOptions);
-exports.validateTime = validate(timeSchema);
-//# sourceMappingURL=validate.js.map
+exports.timeSchema = timeSchema;
+//# sourceMappingURL=schema.js.map

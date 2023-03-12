@@ -1,9 +1,5 @@
 import Joi from "joi";
 
-const joiValidateOptions = {
-  abortEarly: false,
-};
-
 const epochDescriptionScheme = Joi.string()
   .valid(
     "The current server time, in epoch seconds, at time of processing the request."
@@ -25,11 +21,6 @@ const timeSchema = Joi.object({
     epoch: epochObjSchema,
   },
   required: requiredSchema,
-  type: Joi.any(),
+  type: typeScheme,
 });
-
-// Reuseable Validate function when nmore validation needs to be added
-const validate = (schema) => (payload) =>
-  schema.validate(payload, joiValidateOptions);
-
-export const validateTime = validate(timeSchema);
+export { timeSchema };
