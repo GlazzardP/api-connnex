@@ -9,9 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const validate_1 = require("../utils/validate");
 function getTime(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
+            const { error, value } = (0, validate_1.validateTime)(req.body);
+            console.log({ error });
+            if (error) {
+                return res.status(400).send({
+                    success: false,
+                    error: error.details,
+                });
+            }
             const time = Date.now(); // Unix timestamp in milliseconds
             res.send({
                 success: true,
