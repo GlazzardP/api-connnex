@@ -6,7 +6,6 @@ async function getTime(req: Request, res: Response, next: NextFunction) {
     console.log(req.body);
 
     const { error } = validateTime(req.body);
-    console.log({ error });
 
     if (error) {
       return res.status(400).send({

@@ -14,8 +14,8 @@ function getTime(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log(req.body);
-            const { error } = (0, validate_1.validateTime)(req.body);
-            console.log({ error });
+            const { error, value } = (0, validate_1.validateTime)(req.body);
+            console.log({ value });
             if (error) {
                 return res.status(400).send({
                     success: false,
