@@ -9,21 +9,18 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
     });
 };
 Object.defineProperty(exports, "__esModule", { value: true });
+const metrics_1 = require("../utils/metrics");
 function getPrometheusMetrics(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
             console.log("Metrics Run");
-            const error = false;
-            if (error) {
-                return res.status(400).send({
-                    success: false,
-                    error: "No Auth Token",
-                });
-            }
-            const metrics = {};
+            const metrics = yield (0, metrics_1.prometheusMetrics)().catch((err) => {
+                console.log({ err });
+                throw "Cannot Get Prometheus Metrics";
+            });
             res.send({
                 success: true,
-                metrics: metrics,
+                metrics,
             });
         }
         catch (error) {
