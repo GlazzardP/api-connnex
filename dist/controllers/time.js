@@ -8,14 +8,30 @@ var __awaiter = (this && this.__awaiter) || function (thisArg, _arguments, P, ge
         step((generator = generator.apply(thisArg, _arguments || [])).next());
     });
 };
-var __importDefault = (this && this.__importDefault) || function (mod) {
-    return (mod && mod.__esModule) ? mod : { "default": mod };
-};
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = __importDefault(require("./utils/server"));
-const port = 3001;
-const app = (0, server_1.default)();
-app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`App is running at http://localhost/${port}`);
-}));
-//# sourceMappingURL=app.js.map
+function getTime(req, res, next) {
+    return __awaiter(this, void 0, void 0, function* () {
+        try {
+            const error = false;
+            if (error) {
+                return res.status(400).send({
+                    success: false,
+                    error: "No Auth Token",
+                });
+            }
+            const epochSeconds = Date.now(); // Unix timestamp in milliseconds
+            res.send({
+                success: true,
+                time: epochSeconds,
+            });
+        }
+        catch (error) {
+            res.status(400).send({
+                success: false,
+                message: error,
+            });
+        }
+    });
+}
+exports.default = { getTime };
+//# sourceMappingURL=time.js.map
