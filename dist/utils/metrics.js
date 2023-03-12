@@ -12,10 +12,14 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-const server_1 = __importDefault(require("./utils/server"));
-const port = 3001;
-const app = (0, server_1.default)();
-app.listen(port, () => __awaiter(void 0, void 0, void 0, function* () {
-    console.log(`App is running at http://localhost:${port}`);
-}));
-//# sourceMappingURL=app.js.map
+exports.prometheusMetrics = void 0;
+const prom_client_1 = __importDefault(require("prom-client"));
+const prometheusMetrics = () => __awaiter(void 0, void 0, void 0, function* () {
+    const defaultMetrics = prom_client_1.default.collectDefaultMetrics;
+    defaultMetrics();
+    const result = yield prom_client_1.default.register.metrics();
+    console.log({ result });
+    return result;
+});
+exports.prometheusMetrics = prometheusMetrics;
+//# sourceMappingURL=metrics.js.map
