@@ -11,6 +11,7 @@ const authenticeRequest = (req, res, next) => {
         });
     }
     else {
+        console.log("Next", req);
         return next();
     }
 };

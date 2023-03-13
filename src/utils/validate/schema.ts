@@ -5,6 +5,7 @@ const epochDescriptionScheme = Joi.string()
     "The current server time, in epoch seconds, at time of processing the request."
   )
   .required();
+
 const epochObjSchema = Joi.object({
   description: epochDescriptionScheme,
   type: Joi.string().valid("number").required(),

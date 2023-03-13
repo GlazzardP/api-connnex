@@ -13,7 +13,6 @@ const metrics_1 = require("../utils/metrics");
 function getPrometheusMetrics(req, res, next) {
     return __awaiter(this, void 0, void 0, function* () {
         try {
-            console.log("Metrics Run");
             const metrics = yield (0, metrics_1.prometheusMetrics)().catch((err) => {
                 console.log({ err });
                 throw "Cannot Get Prometheus Metrics";

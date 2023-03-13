@@ -7,8 +7,6 @@ async function getPrometheusMetrics(
   next: NextFunction
 ) {
   try {
-    console.log("Metrics Run");
-
     const metrics = await prometheusMetrics().catch((err) => {
       console.log({ err });
       throw "Cannot Get Prometheus Metrics";
