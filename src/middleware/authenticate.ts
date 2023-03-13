@@ -12,6 +12,8 @@ const authenticeRequest = (req: Request, res: Response, next: NextFunction) => {
       error: "Incorrect Auth Token",
     });
   } else {
+    console.log("Next", req);
+
     return next();
   }
 };
