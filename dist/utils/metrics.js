@@ -18,7 +18,6 @@ const prometheusMetrics = () => __awaiter(void 0, void 0, void 0, function* () {
     const defaultMetrics = prom_client_1.default.collectDefaultMetrics;
     defaultMetrics();
     const result = yield prom_client_1.default.register.metrics();
-    console.log({ result });
     return result;
 });
 exports.prometheusMetrics = prometheusMetrics;
